@@ -250,10 +250,10 @@ class Tensor:
             return out
 
 
-            def __mul__(self, other: "Tensor"):
-                """
-                elementwise multiplication (takes broadcasting into account)
-                """               
+    def __mul__(self, other: "Tensor"):
+        """
+        elementwise multiplication (takes broadcasting into account)
+        """               
 
 
 
