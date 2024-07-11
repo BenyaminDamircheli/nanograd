@@ -250,10 +250,33 @@ class Tensor:
             return out
 
 
+    # Double check this later
     def __mul__(self, other: "Tensor"):
         """
         elementwise multiplication (takes broadcasting into account)
         """               
+        if isinstance(other, (int, float)):
+            out = Tensor(
+                data = self.data * other,
+                children = (self,),
+                op = "mul"
+            )
+        
+        if self.requires_grad == False or other.requires_grad == False:
+            return out
+        
+        if self.shape == other.shape:
+            def mul_backward_same():
+                if self.requires_grad:
+                    self.grad += out.grad * 1
+                if other.requires_grad:
+                    other.grad += out.grad * 1
+        
+        else:
+            
+        
+        
+
 
 
 
